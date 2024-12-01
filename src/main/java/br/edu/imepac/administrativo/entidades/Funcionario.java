@@ -19,7 +19,7 @@ public class Funcionario {
     private String contato;
     private String email;
     private LocalDate dataNascimento;
-    private String enumTipoFuncionario;
+    EnumTipoFuncionario enumTipoFuncionario;
     public long getId() { return id; }
     public void setId( long id ) { this.id = id; }
     public String getUsuario() { return usuario; }
@@ -52,6 +52,6 @@ public class Funcionario {
     public void setEmail( String email) { this.email = email; }
     public LocalDate getDataNascimento() { return dataNascimento; }
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
-    public String getEnumTipoFuncionario() { return enumTipoFuncionario; }
-    private void setEnumTipoFuncionario( String enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
+    public EnumTipoFuncionario getEnumTipoFuncionario() { return enumTipoFuncionario; }
+    private void setEnumTipoFuncionario( EnumTipoFuncionario enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
 }
