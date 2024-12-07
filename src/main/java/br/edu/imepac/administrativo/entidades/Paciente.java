@@ -17,6 +17,24 @@ public class Paciente {
     private String contato;
     private String email;
     private LocalDate dataNascimento;
+    public Paciente(long id, String nome, int idade, char sexo, String cpf, String rua, String numero,
+                    String complemento, String bairro, String cidade, String estado, String contato,
+                    String email, LocalDate dataNascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.contato = contato;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+    }
     public long getId() { return id; }
     public void setId( long id ) { this.id = id; }
     public String getNome() { return nome; }

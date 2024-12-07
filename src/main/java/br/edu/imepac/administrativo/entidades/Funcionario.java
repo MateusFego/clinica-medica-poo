@@ -20,6 +20,28 @@ public class Funcionario {
     private String email;
     private LocalDate dataNascimento;
     EnumTipoFuncionario enumTipoFuncionario;
+    public Funcionario(long id, String usuario, long senha, String nome, int idade, char sexo,
+                       String cpf, String rua, String numero, String complemento, String bairro,
+                       String cidade, String estado, String contato, String email, LocalDate dataNascimento,
+                       EnumTipoFuncionario enumTipoFuncionario) {
+        this.id = id;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.contato = contato;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.enumTipoFuncionario = enumTipoFuncionario;
+    }
     public long getId() { return id; }
     public void setId( long id ) { this.id = id; }
     public String getUsuario() { return usuario; }
