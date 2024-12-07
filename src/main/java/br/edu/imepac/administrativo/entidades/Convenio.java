@@ -1,4 +1,4 @@
-package br.edu.imepac.agendamento.entidades;
+package br.edu.imepac.administrativo.entidades;
 
 public class Convenio {
     private long idConvenio;

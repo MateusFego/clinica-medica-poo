@@ -1,4 +1,4 @@
-package br.edu.imepac.administrativo.servicos;
+package br.edu.imepac.agendamento.servicos;
 
 public class GerenciamentoConsulta {
     void cadastrarConsulta(){}

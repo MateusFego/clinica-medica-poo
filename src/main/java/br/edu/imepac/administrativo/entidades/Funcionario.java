@@ -39,7 +39,7 @@ public class Funcionario {
     public String getNumero() { return numero; }
     public void setNumero( String numero ) { this.numero = numero; }
     public String getComplemento() { return complemento; }
-    public void setDataNascimento(String complemento ) { this.complemento = complemento; }
+    public void setComplemento(String complemento ) { this.complemento = complemento; }
     public String getBairro() { return bairro; }
     public void setBairro( String bairro) { this.bairro = bairro; }
     public String getCidade() { return cidade; }

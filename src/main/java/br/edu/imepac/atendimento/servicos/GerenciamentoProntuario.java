@@ -1,4 +1,4 @@
-package br.edu.imepac.administrativo.servicos;
+package br.edu.imepac.atendimento.servicos;
 
 public class GerenciamentoProntuario {
     void cadastrarProntuario();
