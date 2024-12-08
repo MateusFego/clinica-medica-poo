@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package imepac.projeto.frontend;
+package br.edu.imepac.administrativo.telas;
 
+
+import javax.swing.JFrame;
+import br.edu.imepac.agendamento.telas.CadastroConsulta;
 /**
  *
  * @author ALUNO
@@ -15,7 +18,9 @@ public class Atendente extends javax.swing.JFrame {
      */
     public Atendente() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -36,13 +41,13 @@ public class Atendente extends javax.swing.JFrame {
         usuario = new javax.swing.JLabel();
         imgIcon = new javax.swing.JLabel();
         GerPaciente = new javax.swing.JLabel();
-        bottonAgendConsulta = new javax.swing.JButton();
-        bottonListConsulta = new javax.swing.JButton();
+        btnAgendConsulta = new javax.swing.JButton();
+        btnListConsulta = new javax.swing.JButton();
         GerConsulta = new javax.swing.JLabel();
-        bttnCadPaci = new javax.swing.JButton();
-        bttnListPaci = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCadPaciente = new javax.swing.JButton();
+        btnListPaciente = new javax.swing.JButton();
+        btnCadastroConv = new javax.swing.JButton();
+        btnVerConve = new javax.swing.JButton();
 
         VisConsulta.setBackground(new java.awt.Color(51, 51, 51));
         VisConsulta.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,6 +78,11 @@ public class Atendente extends javax.swing.JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         logout.setText("LOGOUT");
         logout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         bemVindo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         bemVindo.setText("Bem - Vindo(a) ,");
@@ -85,61 +95,66 @@ public class Atendente extends javax.swing.JFrame {
         GerPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         GerPaciente.setText("Gerenciar pacientes");
 
-        bottonAgendConsulta.setBackground(new java.awt.Color(51, 51, 51));
-        bottonAgendConsulta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bottonAgendConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        bottonAgendConsulta.setText("Agendar consulta");
-
-        bottonListConsulta.setBackground(new java.awt.Color(51, 51, 51));
-        bottonListConsulta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bottonListConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        bottonListConsulta.setText("Lista de Consultas");
-        bottonListConsulta.addActionListener(new java.awt.event.ActionListener() {
+        btnAgendConsulta.setBackground(new java.awt.Color(51, 51, 51));
+        btnAgendConsulta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgendConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgendConsulta.setText("Agendar consulta");
+        btnAgendConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bottonListConsultaActionPerformed(evt);
+                btnAgendConsultaActionPerformed(evt);
+            }
+        });
+
+        btnListConsulta.setBackground(new java.awt.Color(51, 51, 51));
+        btnListConsulta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        btnListConsulta.setText("Lista de Consultas");
+        btnListConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListConsultaActionPerformed(evt);
             }
         });
 
         GerConsulta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         GerConsulta.setText("Gerenciar consultas");
 
-        bttnCadPaci.setBackground(new java.awt.Color(51, 51, 51));
-        bttnCadPaci.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bttnCadPaci.setForeground(new java.awt.Color(255, 255, 255));
-        bttnCadPaci.setText("Cadastrar pacientes");
-        bttnCadPaci.addActionListener(new java.awt.event.ActionListener() {
+        btnCadPaciente.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadPaciente.setText("Cadastrar pacientes");
+        btnCadPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnCadPaciActionPerformed(evt);
+                btnCadPacienteActionPerformed(evt);
             }
         });
 
-        bttnListPaci.setBackground(new java.awt.Color(51, 51, 51));
-        bttnListPaci.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bttnListPaci.setForeground(new java.awt.Color(255, 255, 255));
-        bttnListPaci.setText("Lista de pacientes");
-        bttnListPaci.addActionListener(new java.awt.event.ActionListener() {
+        btnListPaciente.setBackground(new java.awt.Color(51, 51, 51));
+        btnListPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnListPaciente.setText("Lista de pacientes");
+        btnListPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnListPaciActionPerformed(evt);
+                btnListPacienteActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastro Convênio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastroConv.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadastroConv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastroConv.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastroConv.setText("Cadastro Convênio");
+        btnCadastroConv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastroConvActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Visualizar convênio");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVerConve.setBackground(new java.awt.Color(51, 51, 51));
+        btnVerConve.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnVerConve.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerConve.setText("Visualizar convênio");
+        btnVerConve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVerConveActionPerformed(evt);
             }
         });
 
@@ -154,14 +169,14 @@ public class Atendente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(GerConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
+                                .addComponent(btnCadastroConv)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(bottonListConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .addComponent(bottonAgendConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnListConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                    .addComponent(btnAgendConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bttnListPaci, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnListPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(btnVerConve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +192,7 @@ public class Atendente extends javax.swing.JFrame {
                                         .addComponent(usuario))
                                     .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(GerPaciente)
-                            .addComponent(bttnCadPaci, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCadPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -203,16 +218,16 @@ public class Atendente extends javax.swing.JFrame {
                     .addComponent(GerPaciente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bottonAgendConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bttnCadPaci, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgendConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bottonListConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bttnListPaci, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnListConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastroConv, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVerConve, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -238,25 +253,47 @@ public class Atendente extends javax.swing.JFrame {
        
     }//GEN-LAST:event_VisConsultaActionPerformed
 
-    private void bottonListConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonListConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bottonListConsultaActionPerformed
+    private void btnListConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListConsultaActionPerformed
+       this.dispose();
+       ListaConsulta listaConsulta = new ListaConsulta();
+       listaConsulta.setVisible(true);
+    }//GEN-LAST:event_btnListConsultaActionPerformed
 
-    private void bttnCadPaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCadPaciActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bttnCadPaciActionPerformed
+    private void btnCadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPacienteActionPerformed
+       this.dispose();
+       CadastroPaciente CadPaciente = new CadastroPaciente();
+       CadPaciente.setVisible(true);
+    }//GEN-LAST:event_btnCadPacienteActionPerformed
 
-    private void bttnListPaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnListPaciActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bttnListPaciActionPerformed
+    private void btnListPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPacienteActionPerformed
+       this.dispose();
+        ListaPaciente listaPaciente = new ListaPaciente();
+        listaPaciente.setVisible(true);
+    }//GEN-LAST:event_btnListPacienteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCadastroConvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroConvActionPerformed
+       this.dispose();
+       Convenio CadConvenio = new Convenio();
+       CadConvenio.setVisible(true);
+    }//GEN-LAST:event_btnCadastroConvActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnVerConveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerConveActionPerformed
+       this.dispose();
+       ListaConvenios listaConvenio = new ListaConvenios();
+       listaConvenio.setVisible(true);
+    }//GEN-LAST:event_btnVerConveActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        this.dispose();
+        TelaHome telaLogin = new TelaHome();
+        telaLogin.setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void btnAgendConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendConsultaActionPerformed
+        this.dispose();
+        CadastroConsulta cadastroConsulta = new CadastroConsulta();
+        cadastroConsulta.setVisible(true);
+    }//GEN-LAST:event_btnAgendConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,11 +323,7 @@ public class Atendente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Atendente().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new Atendente().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,13 +332,13 @@ public class Atendente extends javax.swing.JFrame {
     private javax.swing.JLabel GerPaciente;
     private javax.swing.JButton VisConsulta;
     private javax.swing.JLabel bemVindo;
-    private javax.swing.JButton bottonAgendConsulta;
-    private javax.swing.JButton bottonListConsulta;
-    private javax.swing.JButton bttnCadPaci;
-    private javax.swing.JButton bttnListPaci;
+    private javax.swing.JButton btnAgendConsulta;
+    private javax.swing.JButton btnCadPaciente;
+    private javax.swing.JButton btnCadastroConv;
+    private javax.swing.JButton btnListConsulta;
+    private javax.swing.JButton btnListPaciente;
+    private javax.swing.JButton btnVerConve;
     private javax.swing.JLabel imgIcon;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logout;
     private javax.swing.JLabel nomeCLinica;

@@ -80,17 +80,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="GerConsulta" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCadastroConv" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="bottonListConsulta" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="bottonAgendConsulta" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnListConsulta" alignment="0" pref="159" max="32767" attributes="0"/>
+                                      <Component id="btnAgendConsulta" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace pref="109" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="bttnListPaci" pref="168" max="32767" attributes="0"/>
-                              <Component id="jButton2" max="32767" attributes="0"/>
+                              <Component id="btnListPaciente" pref="168" max="32767" attributes="0"/>
+                              <Component id="btnVerConve" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -111,7 +111,7 @@
                                   </Group>
                               </Group>
                               <Component id="GerPaciente" min="-2" max="-2" attributes="0"/>
-                              <Component id="bttnCadPaci" alignment="1" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="btnCadPaciente" alignment="1" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -148,18 +148,18 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bottonAgendConsulta" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="bttnCadPaci" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="btnAgendConsulta" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="btnCadPaciente" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bottonListConsulta" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="bttnListPaci" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="btnListConsulta" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="btnListPaciente" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnCadastroConv" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnVerConve" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
@@ -190,6 +190,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bemVindo">
           <Properties>
@@ -222,7 +225,7 @@
             <Property name="text" type="java.lang.String" value="Gerenciar pacientes"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bottonAgendConsulta">
+        <Component class="javax.swing.JButton" name="btnAgendConsulta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -235,8 +238,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Agendar consulta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgendConsultaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bottonListConsulta">
+        <Component class="javax.swing.JButton" name="btnListConsulta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -250,7 +256,7 @@
             <Property name="text" type="java.lang.String" value="Lista de Consultas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bottonListConsultaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListConsultaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="GerConsulta">
@@ -261,7 +267,7 @@
             <Property name="text" type="java.lang.String" value="Gerenciar consultas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bttnCadPaci">
+        <Component class="javax.swing.JButton" name="btnCadPaciente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -275,10 +281,10 @@
             <Property name="text" type="java.lang.String" value="Cadastrar pacientes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttnCadPaciActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadPacienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bttnListPaci">
+        <Component class="javax.swing.JButton" name="btnListPaciente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -292,10 +298,10 @@
             <Property name="text" type="java.lang.String" value="Lista de pacientes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttnListPaciActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListPacienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnCadastroConv">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -309,10 +315,10 @@
             <Property name="text" type="java.lang.String" value="Cadastro Conv&#xea;nio"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroConvActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnVerConve">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -326,7 +332,7 @@
             <Property name="text" type="java.lang.String" value="Visualizar conv&#xea;nio"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerConveActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
