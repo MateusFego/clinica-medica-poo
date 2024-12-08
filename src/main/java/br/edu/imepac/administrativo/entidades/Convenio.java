@@ -9,6 +9,8 @@ public class Convenio {
         this.nomeConvenio = nomeConvenio;
         this.descricaoConvenio = descricaoConvenio;
     }
+
+    public Convenio() {}
     public long getIdConvenio() { return idConvenio; }
     public void setIdConvenio( long idConvenio ) { this. idConvenio = idConvenio; }
     public String getNomeConvenio() { return nomeConvenio; }

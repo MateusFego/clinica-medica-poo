@@ -14,10 +14,7 @@ public class Prontuario {
         this.observacoes = observacoes;
     }
 
-    public Prontuario() {
-
-    }
-
+    public Prontuario() {}
     public long getIdProntuario() { return idProntuario; }
     public void setIdProntuario(long idProntuario) { this.idProntuario = idProntuario; }
     public String getReceituario() { return receituario; }

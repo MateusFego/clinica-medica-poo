@@ -1,6 +1,7 @@
 package br.edu.imepac.administrativo.entidades;
 
 public class Especialidade {
+    public Especialidade(){}
     private long idEspecialidade;
     private String nomeEspecialidade;
     private String descricaoEspecialidade;

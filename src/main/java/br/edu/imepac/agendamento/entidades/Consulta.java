@@ -8,6 +8,7 @@ public class Consulta {
     private String sintomas;
     private boolean eRetorno;
     private boolean estaAtiva;
+    public Consulta () {}
     public long getIdConsulta() { return idConsulta; }
     public void setIdConsulta( long idConsulta ) { this.idConsulta = idConsulta; }
     public LocalDate getDataHorario() { return dataHorario; }
