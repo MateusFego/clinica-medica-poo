@@ -31,14 +31,14 @@ public class ProntuarioDao {
         }
     }
 
-    public Prontuario getById(int id) {
+    public Prontuario getById(long id) {
         String query = "SELECT * FROM Prontuario WHERE idProntuario = ?";
         Prontuario prontuario = null;
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     prontuario = new Prontuario();
@@ -85,7 +85,7 @@ public class ProntuarioDao {
             stmt.setString(1, prontuario.getReceituario());
             stmt.setString(2, prontuario.getExames());
             stmt.setString(3, prontuario.getObservacoes());
-            stmt.setInt(4, prontuario.getIdProntuario());
+            stmt.setLong(4, prontuario.getIdProntuario());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -93,13 +93,13 @@ public class ProntuarioDao {
         }
     }
 
-    public void delete(int id) {
+    public void delete(long id) {
         String query = "DELETE FROM Prontuario WHERE idProntuario = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

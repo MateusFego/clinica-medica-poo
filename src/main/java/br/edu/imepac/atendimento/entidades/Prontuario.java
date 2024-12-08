@@ -1,7 +1,7 @@
 package br.edu.imepac.atendimento.entidades;
 
 public class Prontuario {
-    private int idProntuario;         // ID of the medical record
+    private long idProntuario;         // ID of the medical record
     private String receituario;       // Prescription from the consultation
     private String exames;            // Required exams for the patient
     private String observacoes;       // General observations for the patient
@@ -18,8 +18,8 @@ public class Prontuario {
 
     }
 
-    public int getIdProntuario() { return idProntuario; }
-    public void setIdProntuario(int idProntuario) { this.idProntuario = idProntuario; }
+    public long getIdProntuario() { return idProntuario; }
+    public void setIdProntuario(long idProntuario) { this.idProntuario = idProntuario; }
     public String getReceituario() { return receituario; }
     public void setReceituario(String receituario) { this.receituario = receituario; }
     public String getExames() { return exames; }

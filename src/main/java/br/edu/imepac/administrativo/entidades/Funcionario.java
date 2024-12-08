@@ -42,6 +42,11 @@ public class Funcionario {
         this.dataNascimento = dataNascimento;
         this.enumTipoFuncionario = enumTipoFuncionario;
     }
+
+    public Funcionario() {
+
+    }
+
     public long getId() { return id; }
     public void setId( long id ) { this.id = id; }
     public String getUsuario() { return usuario; }
@@ -75,5 +80,5 @@ public class Funcionario {
     public LocalDate getDataNascimento() { return dataNascimento; }
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
     public EnumTipoFuncionario getEnumTipoFuncionario() { return enumTipoFuncionario; }
-    private void setEnumTipoFuncionario( EnumTipoFuncionario enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
+    public void setEnumTipoFuncionario( EnumTipoFuncionario enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
 }

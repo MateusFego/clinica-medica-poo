@@ -4,6 +4,7 @@ import br.edu.imepac.administrativo.entidades.Funcionario;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import br.edu.imepac.administrativo.entidades.EnumTipoFuncionario;
 
 public class FuncionarioDao {
 
