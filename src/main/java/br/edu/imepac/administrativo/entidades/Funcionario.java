@@ -1,6 +1,8 @@
 package br.edu.imepac.administrativo.entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Funcionario {
     private long id;
@@ -20,6 +22,7 @@ public class Funcionario {
     private String email;
     private LocalDate dataNascimento;
     EnumTipoFuncionario enumTipoFuncionario;
+    private List<Especialidade> especialidades;
     public Funcionario(long id, String usuario, long senha, String nome, int idade, char sexo,
                        String cpf, String rua, String numero, String complemento, String bairro,
                        String cidade, String estado, String contato, String email, LocalDate dataNascimento,
@@ -41,12 +44,9 @@ public class Funcionario {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.enumTipoFuncionario = enumTipoFuncionario;
+        this.especialidades = new ArrayList<>();
     }
-
-    public Funcionario() {
-
-    }
-
+    public Funcionario() {}
     public long getId() { return id; }
     public void setId( long id ) { this.id = id; }
     public String getUsuario() { return usuario; }
@@ -81,4 +81,8 @@ public class Funcionario {
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
     public EnumTipoFuncionario getEnumTipoFuncionario() { return enumTipoFuncionario; }
     public void setEnumTipoFuncionario( EnumTipoFuncionario enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
+    public List<Especialidade> getEspecialidades() { return especialidades; }
+    public void setEspecialidades(List<Especialidade> especialidades) { this.especialidades = especialidades; }
+    public void addEspecialidade(Especialidade especialidade) { this.especialidades.add(especialidade); }
+    public void removeEspecialidade(Especialidade especialidade) { this.especialidades.remove(especialidade); }
 }
