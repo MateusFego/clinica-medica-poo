@@ -24,7 +24,8 @@ public class MedicoTela extends javax.swing.JFrame {
         bemVindo = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btnIniciarConulta = new javax.swing.JButton();
+        btnListConsulta = new javax.swing.JButton();
+        btnIniciarConulta1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,12 +52,21 @@ public class MedicoTela extends javax.swing.JFrame {
             }
         });
 
-        btnIniciarConulta.setBackground(new java.awt.Color(0, 153, 153));
-        btnIniciarConulta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnIniciarConulta.setText("Iniciar consulta");
-        btnIniciarConulta.addActionListener(new java.awt.event.ActionListener() {
+        btnListConsulta.setBackground(new java.awt.Color(204, 102, 0));
+        btnListConsulta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnListConsulta.setText("Lista de consultas");
+        btnListConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarConultaActionPerformed(evt);
+                btnListConsultaActionPerformed(evt);
+            }
+        });
+
+        btnIniciarConulta1.setBackground(new java.awt.Color(0, 153, 153));
+        btnIniciarConulta1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnIniciarConulta1.setText("Iniciar consulta");
+        btnIniciarConulta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarConulta1ActionPerformed(evt);
             }
         });
 
@@ -70,9 +80,6 @@ public class MedicoTela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnIniciarConulta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -80,11 +87,19 @@ public class MedicoTela extends javax.swing.JFrame {
                                 .addComponent(bemVindo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(usuario)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(10, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
-                                .addGap(17, 17, 17))))))
+                                .addGap(17, 17, 17))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnListConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(77, 77, 77)
+                    .addComponent(btnIniciarConulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(82, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +118,14 @@ public class MedicoTela extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1)))
-                .addGap(18, 18, 18)
-                .addComponent(btnIniciarConulta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(btnListConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addComponent(btnIniciarConulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(99, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,11 +148,17 @@ public class MedicoTela extends javax.swing.JFrame {
         telaLogin.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnIniciarConultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarConultaActionPerformed
+    private void btnListConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListConsultaActionPerformed
+        this.dispose();
+        ListaConsulta listaConsulta = new ListaConsulta("Medico");
+        listaConsulta.setVisible(true);
+    }//GEN-LAST:event_btnListConsultaActionPerformed
+
+    private void btnIniciarConulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarConulta1ActionPerformed
         this.dispose();
         MedicoConsulta telaConsMedico = new MedicoConsulta();
         telaConsMedico.setVisible(true);
-    }//GEN-LAST:event_btnIniciarConultaActionPerformed
+    }//GEN-LAST:event_btnIniciarConulta1ActionPerformed
 
     
     public static void main(String args[]) {
@@ -141,7 +167,8 @@ public class MedicoTela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bemVindo;
-    private javax.swing.JButton btnIniciarConulta;
+    private javax.swing.JButton btnIniciarConulta1;
+    private javax.swing.JButton btnListConsulta;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

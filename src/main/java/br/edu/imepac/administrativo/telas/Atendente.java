@@ -255,7 +255,7 @@ public class Atendente extends javax.swing.JFrame {
 
     private void btnListConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListConsultaActionPerformed
        this.dispose();
-       ListaConsulta listaConsulta = new ListaConsulta();
+       ListaConsulta listaConsulta = new ListaConsulta("atendente");
        listaConsulta.setVisible(true);
     }//GEN-LAST:event_btnListConsultaActionPerformed
 
