@@ -261,25 +261,26 @@ public class Atendente extends javax.swing.JFrame {
 
     private void btnCadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPacienteActionPerformed
        this.dispose();
-       CadastroPaciente CadPaciente = new CadastroPaciente();
+       CadastroPaciente CadPaciente = new CadastroPaciente("atendente");
        CadPaciente.setVisible(true);
     }//GEN-LAST:event_btnCadPacienteActionPerformed
 
     private void btnListPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListPacienteActionPerformed
        this.dispose();
-        ListaPaciente listaPaciente = new ListaPaciente();
+        ListaPaciente listaPaciente = new ListaPaciente("atendente");
         listaPaciente.setVisible(true);
     }//GEN-LAST:event_btnListPacienteActionPerformed
 
     private void btnCadastroConvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroConvActionPerformed
        this.dispose();
-       Convenio CadConvenio = new Convenio();
-       CadConvenio.setVisible(true);
+       Convenio cadConvenio = new Convenio("Atendente");
+       cadConvenio.setVisible(true);
+                                     
     }//GEN-LAST:event_btnCadastroConvActionPerformed
 
     private void btnVerConveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerConveActionPerformed
        this.dispose();
-       ListaConvenios listaConvenio = new ListaConvenios();
+       ListaConvenios listaConvenio = new ListaConvenios("atendente");
        listaConvenio.setVisible(true);
     }//GEN-LAST:event_btnVerConveActionPerformed
 
@@ -291,8 +292,8 @@ public class Atendente extends javax.swing.JFrame {
 
     private void btnAgendConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendConsultaActionPerformed
         this.dispose();
-        CadastroConsulta cadastroConsulta = new CadastroConsulta();
-        cadastroConsulta.setVisible(true);
+       CadastroConsulta cadConsulta = new CadastroConsulta("atendente");
+       cadConsulta.setVisible(true);
     }//GEN-LAST:event_btnAgendConsultaActionPerformed
 
     /**

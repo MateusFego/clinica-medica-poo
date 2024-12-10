@@ -159,6 +159,10 @@ public class ListaConsulta extends javax.swing.JFrame {
             MedicoTela telaMedico = new MedicoTela();
             telaMedico.setVisible(true);
             break;
+        case "administrador":
+            AdministradorHome telaAdm = new AdministradorHome();
+            telaAdm.setVisible(true);
+            break;
         default:
             JOptionPane.showMessageDialog(this, "Origem desconhecida: " + origem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
@@ -197,6 +201,7 @@ public class ListaConsulta extends javax.swing.JFrame {
             public void run() {
             new ListaConsulta("atendente").setVisible(true);
             new ListaConsulta("medico").setVisible(true);
+            new ListaConsulta("administrador").setVisible(true);
             }
         });
     }
