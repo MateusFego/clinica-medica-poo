@@ -13,8 +13,8 @@ import br.edu.imepac.administrativo.daos.ConexaoDao;
 public class ConsultaDao {
 
     public static void save(String data, String horario, String sintomas, Boolean retorno, Boolean ativa) {
-        String query = "INSERT INTO Consulta (dataHorario, sintomas, eRetorno, estaAtiva) VALUES (?, ?, ?, ?)";
-        DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String query = "INSERT INTO consulta (dataHorario, sintomas, eRetorno, estaAtiva) VALUES (?, ?, ?, ?)";
+        DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         try (Connection conn = ConexaoDao.getConexao();

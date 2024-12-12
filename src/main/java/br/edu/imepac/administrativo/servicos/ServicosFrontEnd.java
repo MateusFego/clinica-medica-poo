@@ -3,7 +3,6 @@ package br.edu.imepac.administrativo.servicos;
 import br.edu.imepac.administrativo.daos.ConexaoDao;
 import br.edu.imepac.administrativo.entidades.Funcionario;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,12 +32,5 @@ public class ServicosFrontEnd {
         return tipo;
     }
 
-    public static boolean getBooleanRadioGroup(ButtonGroup buttonGroup, JRadioButton trueButton) {
-        // Obtém o botão selecionado
-        JRadioButton selectedButton = (JRadioButton) buttonGroup.getSelection();
-
-        // Verifica se o botão selecionado é o botão que representa "true"
-        return selectedButton == trueButton;
-    }
 }
 
