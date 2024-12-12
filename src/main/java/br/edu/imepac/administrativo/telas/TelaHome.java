@@ -1,5 +1,7 @@
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.administrativo.servicos.ServicosFrontEnd;
+
 import javax.swing.*;
 
 public class TelaHome extends javax.swing.JFrame {
@@ -135,23 +137,29 @@ public class TelaHome extends javax.swing.JFrame {
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String usuario = campoUser.getText();
         String senha = new String(campoSenha.getPassword());
-    if (usuario.isEmpty() || senha.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-        return;
-    }     
-    if (usuario.equals("admin") && senha.equals("admin")) {
-        JOptionPane.showMessageDialog(this, "Login como Admin com sucesso!");
-        abrirTelaAdmin(); 
-    } else if (usuario.equals("medico") && senha.equals("medico")) {
-        JOptionPane.showMessageDialog(this, "Login como Médico com sucesso!");
-        abrirTelaMedico();
-    } else if (usuario.equals("atendente") && senha.equals("atendente")) {
-        JOptionPane.showMessageDialog(this, "Login como Atendente com sucesso!");
-        abrirTelaAtendente();
-    } else {
-        JOptionPane.showMessageDialog(this, "Dados inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        String tipo = ServicosFrontEnd.login(usuario, senha);
+        if (usuario.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (usuario.equals("admin") && senha.equals("admin")) {
+            JOptionPane.showMessageDialog(this, "Login como Admin com sucesso!");
+            abrirTelaAdmin();
+        } else if (usuario.equals("medico") && senha.equals("medico")) {
+            JOptionPane.showMessageDialog(this, "Login como Médico com sucesso!");
+            abrirTelaMedico();
+        } else if (usuario.equals("atendente") && senha.equals("atendente")) {
+            JOptionPane.showMessageDialog(this, "Login como Atendente com sucesso!");
+            abrirTelaAtendente();
+        } else if (tipo!=null && tipo.equals("ADMINISTRADOR") || tipo.equals("ATENDENTE") || tipo.equals("MEDICO")) {
+            JOptionPane.showMessageDialog(this,"Login como "+tipo+" com sucesso!");
+            if(tipo.equals("ADMINISTRADOR")) {abrirTelaAdmin();}
+            if(tipo.equals("ATENDENTE")) {abrirTelaAtendente();}
+            if(tipo.equals("MEDICO")) {abrirTelaMedico();}
+        } else {
+            JOptionPane.showMessageDialog(this, "Dados inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
 
     private void abrirTelaAdmin() {
         AdministradorHome telaAdmin = new AdministradorHome(); 

@@ -2,28 +2,41 @@ package br.edu.imepac.agendamento.daos;
 
 import br.edu.imepac.agendamento.entidades.Consulta;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.imepac.administrativo.daos.ConexaoDao;
 
 public class ConsultaDao {
 
-    public void save(Consulta consulta) {
+    public static void save(String data, String horario, String sintomas, Boolean retorno, Boolean ativa) {
         String query = "INSERT INTO Consulta (dataHorario, sintomas, eRetorno, estaAtiva) VALUES (?, ?, ?, ?)";
+        DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setDate(1, Date.valueOf(consulta.getDataHorario()));
-            stmt.setString(2, consulta.getSintomas());
-            stmt.setBoolean(3, consulta.getERetorno());
-            stmt.setBoolean(4, consulta.getEstaAtiva());
+            LocalDate date = LocalDate.parse(data, dataFormatter);
+            LocalTime hora = LocalTime.parse(horario, horaFormatter);
+            LocalDateTime dateTime = LocalDateTime.of(date, hora);
+            DateTimeFormatter dbFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String dateTimeString = dateTime.format(dbFormatter);
+            stmt.setString(1, dateTimeString);
+            stmt.setString(2, sintomas);
+            stmt.setBoolean(3, retorno);
+            stmt.setBoolean(4, ativa);
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        consulta.setIdConsulta(rs.getLong(1));
+                        Consulta consulta = new Consulta();
+                        long consultaId = rs.getLong(1);
+                        consulta.setIdConsulta(consultaId);
                     }
                 }
             }

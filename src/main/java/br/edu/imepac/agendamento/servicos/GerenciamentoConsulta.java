@@ -7,16 +7,16 @@ import java.util.List;
 
 public class GerenciamentoConsulta {
 
-    private ConsultaDao consultaDao;
+    private static ConsultaDao consultaDao;
 
     public GerenciamentoConsulta() {
         this.consultaDao = new ConsultaDao();
     }
 
     // Cadastrar consulta
-    public void cadastrarConsulta(Consulta consulta) {
-        if (consulta != null && consulta.getDataHorario() != null) {  // Check if DataHorario is not null
-            consultaDao.save(consulta);
+    public static void cadastrarConsulta(String data, String horario, String sintomas, Boolean retorno, Boolean ativa) {
+        if (data != null && horario != null) {  // Check if DataHorario is not null
+            consultaDao.save( data, horario, sintomas, retorno, ativa);
             System.out.println("Consulta cadastrada com sucesso!");
         } else {
             System.out.println("Dados da consulta inválidos.");

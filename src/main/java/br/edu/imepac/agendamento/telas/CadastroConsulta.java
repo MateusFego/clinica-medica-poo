@@ -4,9 +4,13 @@
  */
 package br.edu.imepac.agendamento.telas;
 
+import br.edu.imepac.administrativo.servicos.ServicosFrontEnd;
 import br.edu.imepac.administrativo.telas.AdministradorHome;
 import br.edu.imepac.administrativo.telas.Atendente;
 import br.edu.imepac.administrativo.telas.Convenio;
+import br.edu.imepac.agendamento.daos.ConsultaDao;
+import br.edu.imepac.agendamento.servicos.GerenciamentoConsulta;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -271,7 +275,12 @@ public class CadastroConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        String data = campoDate.getText();
+        String horario = campoHora.getText();
+        String sintomas = campoSintoma.getText();
+        Boolean retorno = ServicosFrontEnd.getBooleanRadioGroup(Retorno,booleanRetorno);
+        Boolean ativa = ServicosFrontEnd.getBooleanRadioGroup(Ativo,booleanRetorno);
+        GerenciamentoConsulta.cadastrarConsulta(data, horario, sintomas, retorno, ativa);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void booleanRetornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booleanRetornoActionPerformed
