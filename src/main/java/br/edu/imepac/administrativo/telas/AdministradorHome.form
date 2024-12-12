@@ -66,7 +66,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton5" min="-2" pref="193" max="-2" attributes="0"/>
+                              <Component id="VerProntuarios" min="-2" pref="193" max="-2" attributes="0"/>
                               <Component id="jButton7" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
                               <Component id="jButton11" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
                               <Component id="jButton12" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
@@ -128,7 +128,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton5" min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="VerProntuarios" min="-2" pref="55" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton7" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -167,7 +167,7 @@
             <Property name="text" type="java.lang.String" value="ADMINISTRADOR"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="VerProntuarios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -181,7 +181,7 @@
             <Property name="text" type="java.lang.String" value="Ver prontu&#xe1;rios"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerProntuariosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton6">

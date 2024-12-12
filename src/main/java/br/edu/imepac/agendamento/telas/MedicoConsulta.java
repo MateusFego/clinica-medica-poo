@@ -132,7 +132,7 @@ public class MedicoConsulta extends javax.swing.JFrame {
 
     private void btnProntuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProntuarioActionPerformed
         this.dispose();
-        Prontuario telaProntuario = new Prontuario();
+        Prontuario telaProntuario = new Prontuario("medico");
         telaProntuario.setVisible(true);
     }//GEN-LAST:event_btnProntuarioActionPerformed
 
