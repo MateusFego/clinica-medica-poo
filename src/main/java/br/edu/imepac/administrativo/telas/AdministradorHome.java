@@ -5,7 +5,6 @@
 package br.edu.imepac.administrativo.telas;
 
 import br.edu.imepac.agendamento.telas.CadastroConsulta;
-import br.edu.imepac.atendimento.telas.Prontuario;
 import javax.swing.*;
 
 /**
@@ -351,8 +350,8 @@ public class AdministradorHome extends javax.swing.JFrame {
 
     private void VerProntuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerProntuariosActionPerformed
         this.dispose();
-        Prontuario telaProntuario = new Prontuario("administrador");
-        telaProntuario.setVisible(true);
+        ListaProntuario listProntuario = new ListaProntuario("administrador");
+        listProntuario.setVisible(true);
     }//GEN-LAST:event_VerProntuariosActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
