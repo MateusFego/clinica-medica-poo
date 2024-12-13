@@ -4,6 +4,8 @@
  */
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.administrativo.servicos.GerenciamentoConvenio;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -142,7 +144,9 @@ public class Convenio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        String nomeConvenio = campoNomeConvenio.getText();
+        String descricao = campoDescConvenio.getText();
+        GerenciamentoConvenio.cadastrarConvenio(nomeConvenio, descricao);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

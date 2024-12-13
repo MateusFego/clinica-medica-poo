@@ -1,26 +1,30 @@
 package br.edu.imepac.administrativo.daos;
 
 import br.edu.imepac.administrativo.entidades.Convenio;
+import br.edu.imepac.agendamento.entidades.Consulta;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConvenioDao {
 
-    public void save(Convenio convenio) {
-        String query = "INSERT INTO Convenio (nomeConvenio, descricaoConvenio) VALUES (?, ?)";
+    public static void save(String nome, String descricao) {
+        String query = "INSERT INTO convenio (nomeconvenio, descricaoconvenio) VALUES (?, ?)";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, convenio.getNomeConvenio());
-            stmt.setString(2, convenio.getDescricaoConvenio());
+            stmt.setString(1, nome);
+            stmt.setString(2, descricao);
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        convenio.setIdConvenio(rs.getLong(1));
+                        Convenio convenio = new Convenio();
+                        long convenioId = rs.getLong(1);
+                        convenio.setIdConvenio(convenioId);
                     }
                 }
             }

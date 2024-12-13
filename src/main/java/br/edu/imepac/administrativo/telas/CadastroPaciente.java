@@ -505,7 +505,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoIdadeActionPerformed
 
     private void campoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSaveActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_campoSaveActionPerformed
 
     private void campoNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroActionPerformed

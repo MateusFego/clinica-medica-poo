@@ -7,16 +7,16 @@ import java.util.List;
 
 public class GerenciamentoConvenio {
 
-    private ConvenioDao convenioDao;
+    private static ConvenioDao convenioDao;
 
     public GerenciamentoConvenio() {
         this.convenioDao = new ConvenioDao();
     }
 
     // Method to register a new insurances
-    public void cadastrarConvenio(Convenio convenio) {
-        if (convenio != null && convenio.getNomeConvenio() != null && !convenio.getNomeConvenio().isEmpty()) {
-            convenioDao.save(convenio);
+    public static void cadastrarConvenio(String nome, String descricao) {
+        if (nome != null && descricao != null ) {
+            convenioDao.save(nome, descricao);
             System.out.println("Convenio cadastrado com sucesso!");
         } else {
             System.out.println("Dados do convenio invalidos.");
