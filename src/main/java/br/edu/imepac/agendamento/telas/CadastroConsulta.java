@@ -8,8 +8,10 @@ import br.edu.imepac.administrativo.telas.AdministradorHome;
 import br.edu.imepac.administrativo.telas.Atendente;
 import br.edu.imepac.administrativo.telas.Convenio;
 import br.edu.imepac.agendamento.servicos.GerenciamentoConsulta;
-
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.DefaultFormatterFactory;
+import java.text.ParseException;
 
 /**
  *
@@ -23,7 +25,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
         this.origem = origem;
         System.out.println("Origem recebida: " + this.origem);
         initComponents();
-        setLocationRelativeTo(null);  
+        setLocationRelativeTo(null); 
+        aplicarMascaras();
     }
 
     
@@ -40,9 +43,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        campoDate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        campoHora = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoSintoma = new javax.swing.JTextArea();
@@ -54,6 +55,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         selectEspecialiade = new javax.swing.JComboBox<>();
+        campoDate = new javax.swing.JFormattedTextField();
+        campoHora = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,10 +177,10 @@ public class CadastroConsulta extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(campoDate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(38, 38, 38)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel5)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(59, 59, 59)
@@ -204,11 +207,12 @@ public class CadastroConsulta extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(campoDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -249,7 +253,23 @@ public class CadastroConsulta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void aplicarMascaras() {
+        try {
+            // Máscara para o campo de Data (dd/MM/yyyy)
+            MaskFormatter mascaraData = new MaskFormatter("####-##-##");
+            mascaraData.setPlaceholderCharacter('_'); // Caracter de preenchimento
+            campoDate.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
 
+            // Máscara para o campo de Hora (HH:mm)
+            MaskFormatter mascaraHora = new MaskFormatter("##:##");
+            mascaraHora.setPlaceholderCharacter('_'); // Caracter de preenchimento
+            campoHora.setFormatterFactory(new DefaultFormatterFactory(mascaraHora));
+            
+        } catch (ParseException e) {
+            e.printStackTrace(); // Exibe erros, caso ocorra algum
+        }
+    }
+    
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
     System.out.println("Origem ao clicar em voltar: " + origem);
     this.dispose();
@@ -311,8 +331,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
     private javax.swing.JRadioButton booleanRetorno;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoDate;
-    private javax.swing.JTextField campoHora;
+    private javax.swing.JFormattedTextField campoDate;
+    private javax.swing.JFormattedTextField campoHora;
     private javax.swing.JTextArea campoSintoma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
