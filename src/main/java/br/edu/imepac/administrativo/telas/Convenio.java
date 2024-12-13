@@ -147,6 +147,7 @@ public class Convenio extends javax.swing.JFrame {
         String nomeConvenio = campoNomeConvenio.getText();
         String descricao = campoDescConvenio.getText();
         GerenciamentoConvenio.cadastrarConvenio(nomeConvenio, descricao);
+        JOptionPane.showMessageDialog(this, "Convenio cadastrado com sucesso!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

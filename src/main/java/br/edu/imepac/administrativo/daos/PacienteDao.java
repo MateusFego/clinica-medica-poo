@@ -1,38 +1,41 @@
 package br.edu.imepac.administrativo.daos;
 
 import br.edu.imepac.administrativo.entidades.Paciente;
+import br.edu.imepac.agendamento.entidades.Consulta;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PacienteDao {
 
-    public void save(Paciente paciente) {
-        String query = "INSERT INTO Paciente (nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email, dataNascimento) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static void cadastrarPaciente( String nome, int idade, String sexo, String cpf, String rua, String numero, String complemento, String bairro, String cidade, String estado, String contato, String email) {
+        String query = "INSERT INTO paciente (nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, paciente.getNome());
-            stmt.setInt(2, paciente.getIdade());
-            stmt.setString(3, String.valueOf(paciente.getSexo()));
-            stmt.setString(4, paciente.getCpf());
-            stmt.setString(5, paciente.getRua());
-            stmt.setString(6, paciente.getNumero());
-            stmt.setString(7, paciente.getComplemento());
-            stmt.setString(8, paciente.getBairro());
-            stmt.setString(9, paciente.getCidade());
-            stmt.setString(10, paciente.getEstado());
-            stmt.setString(11, paciente.getContato());
-            stmt.setString(12, paciente.getEmail());
-            stmt.setDate(13, Date.valueOf(paciente.getDataNascimento()));
+            stmt.setString(1, nome);
+            stmt.setInt(2, idade);
+            stmt.setString(3, sexo);
+            stmt.setString(4, cpf);
+            stmt.setString(5, rua);
+            stmt.setString(6, numero);
+            stmt.setString(7, complemento);
+            stmt.setString(8, bairro);
+            stmt.setString(9, cidade);
+            stmt.setString(10, estado);
+            stmt.setString(11, contato);
+            stmt.setString(12, email);
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        paciente.setId(rs.getLong(1));
+                        Paciente paciente = new Paciente();
+                        long pacienteId = rs.getLong(1);
+                        paciente.setId(pacienteId);
                     }
                 }
             }

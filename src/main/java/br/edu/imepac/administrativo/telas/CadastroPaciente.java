@@ -4,7 +4,10 @@
  */
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.agendamento.servicos.GerenciamentoConsulta;
+
 import javax.swing.JOptionPane;
+import br.edu.imepac.administrativo.servicos.GerenciamentoPaciente;
 
 /**
  *
@@ -505,7 +508,20 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoIdadeActionPerformed
 
     private void campoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSaveActionPerformed
-
+        String nome = campoNome.getText();
+        int idade = Integer.parseInt(campoIdade.getText());
+        String sexo = (String) selectSexo.getSelectedItem();
+        String cpf = campoCPF.getText();
+        String rua = campoRua.getText();
+        String numero = campoNumero.getText();
+        String complemento = campoComplemento.getText();
+        String bairro = campoBairro.getText();
+        String cidade = campoCidade.getText();
+        String estado = campoUF.getText();
+        String contato = campoContato.getText();
+        String email = campoEmail.getText();
+        GerenciamentoPaciente.cadastrarPaciente(nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email);
+        JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
     }//GEN-LAST:event_campoSaveActionPerformed
 
     private void campoNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroActionPerformed

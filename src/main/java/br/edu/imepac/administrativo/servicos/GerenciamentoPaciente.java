@@ -7,16 +7,16 @@ import java.util.List;
 
 public class GerenciamentoPaciente {
 
-    private PacienteDao pacienteDao;
+    private  static PacienteDao pacienteDao;
 
     public GerenciamentoPaciente() {
         this.pacienteDao = new PacienteDao();
     }
 
     // Method to register a new pacient
-    public void cadastrarPaciente(Paciente paciente) {
-        if (paciente != null && paciente.getNome() != null && !paciente.getNome().isEmpty()) {
-            pacienteDao.save(paciente);
+    public static void cadastrarPaciente( String nome, int idade, String sexo, String cpf, String rua, String numero, String complemento, String bairro, String cidade, String estado, String contato, String email) {
+        if (nome != null && cpf != null) {
+            pacienteDao.cadastrarPaciente( nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email);
             System.out.println("Paciente cadastrado com sucesso!");
         } else {
             System.out.println("Dados do paciente invalidos.");
