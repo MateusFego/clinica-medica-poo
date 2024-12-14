@@ -5,37 +5,37 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.imepac.administrativo.entidades.EnumTipoFuncionario;
+import br.edu.imepac.administrativo.entidades.Paciente;
 
 public class FuncionarioDao {
 
-    public void save(Funcionario funcionario) {
-        String query = "INSERT INTO Funcionario (usuario, senha, nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email, dataNascimento, tipoFuncionario) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static void save(String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
+        String query = "INSERT INTO funcionario (usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, tipoFuncionario) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, funcionario.getUsuario());
-            stmt.setLong(2, funcionario.getSenha());
-            stmt.setString(3, funcionario.getNome());
-            stmt.setInt(4, funcionario.getIdade());
-            stmt.setString(5, String.valueOf(funcionario.getSexo()));
-            stmt.setString(6, funcionario.getCpf());
-            stmt.setString(7, funcionario.getRua());
-            stmt.setString(8, funcionario.getNumero());
-            stmt.setString(9, funcionario.getComplemento());
-            stmt.setString(10, funcionario.getBairro());
-            stmt.setString(11, funcionario.getCidade());
-            stmt.setString(12, funcionario.getEstado());
-            stmt.setString(13, funcionario.getContato());
-            stmt.setString(14, funcionario.getEmail());
-            stmt.setDate(15, Date.valueOf(funcionario.getDataNascimento()));
-            stmt.setString(16, funcionario.getEnumTipoFuncionario().toString());
+            stmt.setString(1, usuario);
+            stmt.setString(2, senha);
+            stmt.setString(3, nome);
+            stmt.setInt(4, idade);
+            stmt.setString(5, sexo);
+            stmt.setString(6, cpf);
+            stmt.setString(7, rua);
+            stmt.setString(8, numero);
+            stmt.setString(9, bairro);
+            stmt.setString(10, cidade);
+            stmt.setString(11, estado);
+            stmt.setString(12, contato);
+            stmt.setString(13, email);
+            stmt.setString(14, enumTipoFuncionario);
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
+                        Funcionario funcionario = new Funcionario();
                         funcionario.setId(rs.getLong(1));  // Set the generated ID
                     }
                 }

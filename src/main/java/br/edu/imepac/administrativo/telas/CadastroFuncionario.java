@@ -4,10 +4,13 @@
  */
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.administrativo.servicos.GerenciamentoPaciente;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import java.text.ParseException;
+import br.edu.imepac.administrativo.servicos.GerenciamentoFuncionario;
 
 public class CadastroFuncionario extends javax.swing.JFrame {
 
@@ -429,7 +432,36 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoConfirmPassActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        String senha = campoCreatePass.getText();
+        String confirmarSenha = campoConfirmPass.getText();
+        if (senha.equals(confirmarSenha)) {
+            String usuario = campoCreateUser.getText();
+            String nome = campoNome.getText();
+            int idade = Integer.parseInt(campoIdade.getText());
+            String sexo = (String) selectSexo.getSelectedItem();
+            String cpf = campoCPF.getText();
+            String rua = campoRua.getText();
+            String numero = campoNumero.getText();
+            String bairro = campoBairro.getText();
+            String cidade = campoCidade.getText();
+            String estado = campoEstado.getText();
+            String contato = campoCOntato.getText();
+            String email = campoEmail.getText();
+            String enumTipoFuncionario = "";
+            if(selectTypeFuncionario.isSelected()){
+                enumTipoFuncionario = ("ATENDENTE");
+            }else if(jRadioButton1.isSelected()){
+                enumTipoFuncionario = ("MEDICO");
+            }else if(jRadioButton3.isSelected()){
+                enumTipoFuncionario = ("ADMINISTRADOR");
+            }else{
+                JOptionPane.showMessageDialog(this,"Selecione um tipo de funcionario");
+            }
+            GerenciamentoFuncionario.cadastrarFuncionario(usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, enumTipoFuncionario);
+            JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!");
+        }else {
+            JOptionPane.showMessageDialog(this,"As senhas não conferem, preencha novamente");
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

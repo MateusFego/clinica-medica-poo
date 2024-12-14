@@ -34,8 +34,7 @@ public class PacienteDao {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         Paciente paciente = new Paciente();
-                        long pacienteId = rs.getLong(1);
-                        paciente.setId(pacienteId);
+                        paciente.setId(rs.getLong(1));
                     }
                 }
             }

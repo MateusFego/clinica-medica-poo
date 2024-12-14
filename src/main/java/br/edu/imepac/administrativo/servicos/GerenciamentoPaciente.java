@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GerenciamentoPaciente {
 
-    private  static PacienteDao pacienteDao;
+    private static PacienteDao pacienteDao;
 
     public GerenciamentoPaciente() {
         this.pacienteDao = new PacienteDao();

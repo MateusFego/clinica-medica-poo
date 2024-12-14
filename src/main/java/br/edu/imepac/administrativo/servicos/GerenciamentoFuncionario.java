@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 public class GerenciamentoFuncionario {
 
-    private FuncionarioDao funcionarioDao;
+    private static FuncionarioDao funcionarioDao;
 
     public GerenciamentoFuncionario() {
         this.funcionarioDao = new FuncionarioDao();
     }
 
     // Method to register a new employee
-    public void cadastrarFuncionario(Funcionario funcionario) {
-        if (funcionario != null && funcionario.getNome() != null && !funcionario.getNome().isEmpty()) {
-            funcionarioDao.save(funcionario);
+    public static void cadastrarFuncionario(String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
+        if (usuario != null && senha != null && nome != null) {
+            FuncionarioDao.save(usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, enumTipoFuncionario);
             System.out.println("Funcionario cadastrado com sucesso!");
         } else {
             System.out.println("Dados do funcionario invalidos.");
