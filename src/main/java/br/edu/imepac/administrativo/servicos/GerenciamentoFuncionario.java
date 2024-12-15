@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GerenciamentoFuncionario {
 
-    private static FuncionarioDao funcionarioDao;
+    private static FuncionarioDao funcionarioDao = new FuncionarioDao();
 
     public GerenciamentoFuncionario() {
         this.funcionarioDao = new FuncionarioDao();
@@ -59,17 +59,8 @@ public class GerenciamentoFuncionario {
     }
 
     // Method to list all employees
-    public List<Funcionario> listarFuncionario() {
-        List<Funcionario> funcionarios = funcionarioDao.getAll();
-        if (!funcionarios.isEmpty()) {
-            for (Funcionario funcionario : funcionarios) {
-                System.out.println("Funcionario ID: " + funcionario.getId() + " - " + funcionario.getNome());
-            }
-            return funcionarios;
-        } else {
-            System.out.println("Nenhum funcionario encontrado.");
-            return List.of();
-        }
+    public static List<Funcionario> listarFuncionario() {
+        return FuncionarioDao.getAll();
     }
 
     // Helper method to list employees by type (ADMINISTRADOR, ATENDENTE, MEDICO)

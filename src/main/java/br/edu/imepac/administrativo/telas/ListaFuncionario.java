@@ -4,6 +4,13 @@
  */
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.administrativo.servicos.GerenciamentoFuncionario;
+import br.edu.imepac.administrativo.entidades.Funcionario;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author Mateus
@@ -13,6 +20,7 @@ public class ListaFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form ListaFuncionario
      */
+    private DefaultTableModel tableModel;
     public ListaFuncionario() {
         initComponents();
         setLocationRelativeTo(null); 
@@ -29,7 +37,9 @@ public class ListaFuncionario extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaFuncionario = new javax.swing.JTable();
+        tableModel = new DefaultTableModel();
+        tabelaFuncionario = new JTable(tableModel);
+        carregarTabela();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
@@ -39,26 +49,6 @@ public class ListaFuncionario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Funcionários");
-
-        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nome", "Idade", "Email", "Contato", "Data de Nascimento", "CPF", "Sexo", "Usuário", "Senha"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(tabelaFuncionario);
 
         btnDelete.setBackground(new java.awt.Color(204, 0, 0));
@@ -137,6 +127,30 @@ public class ListaFuncionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void carregarTabela(){
+        List<Funcionario> funcionarios = GerenciamentoFuncionario.listarFuncionario();
+        tableModel.addColumn("id");
+        tableModel.addColumn("usuario");
+        tableModel.addColumn("senha");
+        tableModel.addColumn("nome");
+        tableModel.addColumn("idade");
+        tableModel.addColumn("sexo");
+        tableModel.addColumn("cpf");
+        tableModel.addColumn("rua");
+        tableModel.addColumn("numero");
+        tableModel.addColumn("complemento");
+        tableModel.addColumn("bairro");
+        tableModel.addColumn("cidade");
+        tableModel.addColumn("estado");
+        tableModel.addColumn("contato");
+        tableModel.addColumn("email");
+        tableModel.addColumn("data nascimento");
+        tableModel.addColumn("tipo funcionario");
+        for (Funcionario funcionario : funcionarios) {
+            tableModel.addRow(new Object[] {funcionario.getId(),funcionario.getUsuario(),funcionario.getSenha(),funcionario.getNome(),funcionario.getIdade(),funcionario.getSexo(),funcionario.getCpf(),funcionario.getRua(),funcionario.getNumero(),funcionario.getComplemento(),funcionario.getBairro(),funcionario.getCidade(),funcionario.getEstado(),funcionario.getContato(),funcionario.getEmail(),funcionario.getDataNascimento(),funcionario.getEnumTipoFuncionario().name()});
+        }
+    }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:

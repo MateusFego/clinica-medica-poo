@@ -46,7 +46,7 @@ public class FuncionarioDao {
     }
 
     public Funcionario getById(long id) {
-        String query = "SELECT * FROM Funcionario WHERE id = ?";
+        String query = "SELECT * FROM funcionario WHERE id = ?";
         Funcionario funcionario = null;
 
         try (Connection conn = ConexaoDao.getConexao();
@@ -58,7 +58,7 @@ public class FuncionarioDao {
                     funcionario = new Funcionario();
                     funcionario.setId(rs.getLong("id"));
                     funcionario.setUsuario(rs.getString("usuario"));
-                    funcionario.setSenha(rs.getLong("senha"));
+                    funcionario.setSenha(rs.getString("senha"));
                     funcionario.setNome(rs.getString("nome"));
                     funcionario.setIdade(rs.getInt("idade"));
                     funcionario.setSexo(rs.getString("sexo").charAt(0));
@@ -81,9 +81,9 @@ public class FuncionarioDao {
         return funcionario;
     }
 
-    public List<Funcionario> getAll() {
+    public static List<Funcionario> getAll() {
         List<Funcionario> funcionarios = new ArrayList<>();
-        String query = "SELECT * FROM Funcionario";
+        String query = "SELECT * FROM funcionario";
 
         try (Connection conn = ConexaoDao.getConexao();
              Statement stmt = conn.createStatement();
@@ -93,7 +93,7 @@ public class FuncionarioDao {
                 Funcionario funcionario = new Funcionario();
                 funcionario.setId(rs.getLong("id"));
                 funcionario.setUsuario(rs.getString("usuario"));
-                funcionario.setSenha(rs.getLong("senha"));
+                funcionario.setSenha(rs.getString("senha"));
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setIdade(rs.getInt("idade"));
                 funcionario.setSexo(rs.getString("sexo").charAt(0));
@@ -117,13 +117,13 @@ public class FuncionarioDao {
     }
 
     public void update(Funcionario funcionario) {
-        String query = "UPDATE Funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
+        String query = "UPDATE funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, funcionario.getUsuario());
-            stmt.setLong(2, funcionario.getSenha());
+            stmt.setString(2, funcionario.getSenha());
             stmt.setString(3, funcionario.getNome());
             stmt.setInt(4, funcionario.getIdade());
             stmt.setString(5, String.valueOf(funcionario.getSexo()));
@@ -147,7 +147,7 @@ public class FuncionarioDao {
     }
 
     public void delete(long id) {
-        String query = "DELETE FROM Funcionario WHERE id = ?";
+        String query = "DELETE FROM funcionario WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {

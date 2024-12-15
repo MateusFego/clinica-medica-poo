@@ -7,7 +7,7 @@ import java.util.List;
 public class Funcionario {
     private long id;
     private String usuario;
-    private long senha;
+    private String senha;
     private String nome;
     private int idade;
     private char sexo;
@@ -23,7 +23,7 @@ public class Funcionario {
     private LocalDate dataNascimento;
     EnumTipoFuncionario enumTipoFuncionario;
     private List<Especialidade> especialidades;
-    public Funcionario(long id, String usuario, long senha, String nome, int idade, char sexo,
+    public Funcionario(long id, String usuario, String senha, String nome, int idade, char sexo,
                        String cpf, String rua, String numero, String complemento, String bairro,
                        String cidade, String estado, String contato, String email, LocalDate dataNascimento,
                        EnumTipoFuncionario enumTipoFuncionario) {
@@ -51,8 +51,8 @@ public class Funcionario {
     public void setId( long id ) { this.id = id; }
     public String getUsuario() { return usuario; }
     public void setUsuario( String usuario ) { this.usuario = usuario; }
-    public long getSenha() { return senha; }
-    public void setSenha( long senha ) { this.senha = senha; }
+    public String getSenha() { return senha; }
+    public void setSenha( String senha ) { this.senha = senha; }
     public String getNome() { return nome; }
     public void setNome( String nome ) { this.nome = nome; }
     public int getIdade() { return idade; }
@@ -85,4 +85,28 @@ public class Funcionario {
     public void setEspecialidades(List<Especialidade> especialidades) { this.especialidades = especialidades; }
     public void addEspecialidade(Especialidade especialidade) { this.especialidades.add(especialidade); }
     public void removeEspecialidade(Especialidade especialidade) { this.especialidades.remove(especialidade); }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", usuario='" + usuario + '\'' +
+                ", senha='" + senha + '\'' +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", sexo=" + sexo +
+                ", cpf='" + cpf + '\'' +
+                ", rua='" + rua + '\'' +
+                ", numero='" + numero + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
+                ", contato='" + contato + '\'' +
+                ", email='" + email + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", enumTipoFuncionario=" + enumTipoFuncionario +
+                ", especialidades=" + especialidades +
+                '}';
+    }
 }
