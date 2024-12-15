@@ -3,6 +3,10 @@ package br.edu.imepac.administrativo.servicos;
 import br.edu.imepac.administrativo.daos.ConvenioDao;
 import br.edu.imepac.administrativo.entidades.Convenio;
 
+import javax.swing.*;
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class GerenciamentoConvenio {
@@ -57,16 +61,7 @@ public class GerenciamentoConvenio {
     }
 
     // Method to list all insurances
-    public List<Convenio> listarConvenio() {
-        List<Convenio> convenios = convenioDao.getAll();
-        if (!convenios.isEmpty()) {
-            for (Convenio convenio : convenios) {
-                System.out.println("Convenio ID: " + convenio.getIdConvenio() + " - " + convenio.getNomeConvenio());
-            }
-            return convenios;
-        } else {
-            System.out.println("Nenhum convenio encontrado.");
-            return List.of();
-        }
+    public static List<Convenio> listarConvenio() {
+        return convenioDao.listarConvenio();
     }
 }

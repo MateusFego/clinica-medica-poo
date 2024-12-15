@@ -4,7 +4,15 @@
  */
 package br.edu.imepac.administrativo.telas;
 
-import javax.swing.JOptionPane;
+import br.edu.imepac.administrativo.servicos.GerenciamentoConvenio;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -13,21 +21,26 @@ import javax.swing.JOptionPane;
 public class ListaConvenios extends javax.swing.JFrame {
 
     private String origem;
-    
+    private DefaultTableModel tableModel;
+
     public ListaConvenios(String origem) {
         this.origem = origem;
         System.out.println("Origem recebida: " + this.origem);
         initComponents();
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
     }
 
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        tableModel = new DefaultTableModel();
         tabelaConvenios = new javax.swing.JTable();
+        tabelaConvenios = new JTable(tableModel);
+        jScrollPane1.setViewportView(tabelaConvenios);
+        carregarTabela();
         jLabel1 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
@@ -35,24 +48,6 @@ public class ListaConvenios extends javax.swing.JFrame {
         btnVOltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tabelaConvenios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Descrição"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tabelaConvenios);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Convênios");
@@ -87,42 +82,53 @@ public class ListaConvenios extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(btnSave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEdit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
-                .addComponent(btnVOltar)
-                .addGap(18, 18, 18))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(190, 190, 190)
+                                .addComponent(btnSave)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEdit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelete)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(348, 348, 348)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                                .addComponent(btnVOltar)
+                                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnVOltar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnEdit)
-                    .addComponent(btnDelete))
-                .addGap(16, 16, 16))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(btnVOltar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnSave)
+                                        .addComponent(btnEdit)
+                                        .addComponent(btnDelete))
+                                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void carregarTabela(){
+        List<br.edu.imepac.administrativo.entidades.Convenio> convenios = GerenciamentoConvenio.listarConvenio();
+        tableModel.addColumn("id");
+        tableModel.addColumn("nome");
+        tableModel.addColumn("descriçao");
+
+        for (br.edu.imepac.administrativo.entidades.Convenio convenio : convenios) {
+            tableModel.addRow(new Object[] {convenio.getIdConvenio(), convenio.getNomeConvenio(), convenio.getDescricaoConvenio()});
+        }
+    }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -130,36 +136,36 @@ public class ListaConvenios extends javax.swing.JFrame {
 
     private void btnVOltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVOltarActionPerformed
         System.out.println("Origem ao clicar em voltar: " + origem);
-    this.dispose();
+        this.dispose();
 
-    if (origem == null) {
-        JOptionPane.showMessageDialog(this, "Erro: Origem é nula.", "Erro", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (origem == null) {
+            JOptionPane.showMessageDialog(this, "Erro: Origem é nula.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    switch (origem.toLowerCase()) {
-        case "atendente":
-            Atendente telaAtendente = new Atendente();
-            telaAtendente.setVisible(true);
-            break;
-        case "administrador":
-            AdministradorHome telaAdm = new AdministradorHome();
-            telaAdm.setVisible(true);
-            break;
-        default:
-            JOptionPane.showMessageDialog(this, "Origem desconhecida: " + origem, "Erro", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_btnVOltarActionPerformed
+        switch (origem.toLowerCase()) {
+            case "atendente":
+                Atendente telaAtendente = new Atendente();
+                telaAtendente.setVisible(true);
+                break;
+            case "administrador":
+                AdministradorHome telaAdm = new AdministradorHome();
+                telaAdm.setVisible(true);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Origem desconhecida: " + origem, "Erro", JOptionPane.ERROR_MESSAGE);
+        }//GEN-LAST:event_btnVOltarActionPerformed
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Convenio("atendente").setVisible(true);
-            new Convenio("administrador").setVisible(true);
+            public void run() {
+                new Convenio("atendente").setVisible(true);
+                new Convenio("administrador").setVisible(true);
             }
         });
     }

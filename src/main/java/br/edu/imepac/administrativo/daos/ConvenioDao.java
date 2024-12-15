@@ -55,25 +55,24 @@ public class ConvenioDao {
         return convenio;
     }
 
-    public List<Convenio> getAll() {
-        List<Convenio> convenios = new ArrayList<>();
-        String query = "SELECT * FROM Convenio";
+    public static List<Convenio> listarConvenio() {
+        String query = "SELECT * FROM convenio";
+        List<Convenio> result = new ArrayList<>();
 
         try (Connection conn = ConexaoDao.getConexao();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
+             ResultSet rs = stmt.executeQuery(query)){
             while (rs.next()) {
                 Convenio convenio = new Convenio();
                 convenio.setIdConvenio(rs.getLong("idConvenio"));
                 convenio.setNomeConvenio(rs.getString("nomeConvenio"));
                 convenio.setDescricaoConvenio(rs.getString("descricaoConvenio"));
-                convenios.add(convenio);
+                result.add(convenio);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return convenios;
+        return result;
     }
 
     public void update(Convenio convenio) {
