@@ -44,7 +44,7 @@ public class PacienteDao {
     }
 
     public Paciente getById(long id) {
-        String query = "SELECT * FROM Paciente WHERE id = ?";
+        String query = "SELECT * FROM paciente WHERE id = ?";
         Paciente paciente = null;
 
         try (Connection conn = ConexaoDao.getConexao();
@@ -76,9 +76,9 @@ public class PacienteDao {
         return paciente;
     }
 
-    public List<Paciente> getAll() {
+    public static List<Paciente> getAll() {
         List<Paciente> pacientes = new ArrayList<>();
-        String query = "SELECT * FROM Paciente";
+        String query = "SELECT * FROM paciente";
 
         try (Connection conn = ConexaoDao.getConexao();
              Statement stmt = conn.createStatement();
@@ -99,7 +99,7 @@ public class PacienteDao {
                 paciente.setEstado(rs.getString("estado"));
                 paciente.setContato(rs.getString("contato"));
                 paciente.setEmail(rs.getString("email"));
-                paciente.setDataNascimento(rs.getDate("dataNascimento").toLocalDate());
+                paciente.setDataNascimento(null);
                 pacientes.add(paciente);
             }
         } catch (SQLException e) {
@@ -109,7 +109,7 @@ public class PacienteDao {
     }
 
     public void update(Paciente paciente) {
-        String query = "UPDATE Paciente SET nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ? WHERE id = ?";
+        String query = "UPDATE paciente SET nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ? WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -136,7 +136,7 @@ public class PacienteDao {
     }
 
     public void delete(long id) {
-        String query = "DELETE FROM Paciente WHERE id = ?";
+        String query = "DELETE FROM paciente WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {

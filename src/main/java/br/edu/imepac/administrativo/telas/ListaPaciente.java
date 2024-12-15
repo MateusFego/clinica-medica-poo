@@ -4,7 +4,12 @@
  */
 package br.edu.imepac.administrativo.telas;
 
-import javax.swing.JOptionPane;
+import br.edu.imepac.administrativo.entidades.Paciente;
+import br.edu.imepac.administrativo.servicos.GerenciamentoPaciente;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
@@ -13,6 +18,7 @@ import javax.swing.JOptionPane;
 public class ListaPaciente extends javax.swing.JFrame {
 
     private String origem;
+    private DefaultTableModel tableModel;
     
     public ListaPaciente(String origem) {
         this.origem = origem;
@@ -29,7 +35,9 @@ public class ListaPaciente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaPaciente = new javax.swing.JTable();
+        tableModel = new DefaultTableModel();
+        tabelaPaciente = new JTable(tableModel);
+        carregarTabela();
         btnVoltar = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -45,22 +53,7 @@ public class ListaPaciente extends javax.swing.JFrame {
         jLabel1.setText("Lista de Pacientes ");
 
         tabelaPaciente.setForeground(new java.awt.Color(153, 153, 153));
-        tabelaPaciente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
 
-            },
-            new String [] {
-                "Nome", "Idade", "Sexo", "CPF", "Contato", "Email", "Data de Nascimento"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(tabelaPaciente);
 
         btnVoltar.setText("Voltar");
@@ -142,6 +135,27 @@ public class ListaPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void carregarTabela() {
+        List<Paciente> pacientes = GerenciamentoPaciente.listarPaciente();
+        tableModel.addColumn("id");
+        tableModel.addColumn("nome");
+        tableModel.addColumn("idade");
+        tableModel.addColumn("sexo");
+        tableModel.addColumn("cpf");
+        tableModel.addColumn("rua");
+        tableModel.addColumn("numero");
+        tableModel.addColumn("complemento");
+        tableModel.addColumn("bairro");
+        tableModel.addColumn("cidade");
+        tableModel.addColumn("estado");
+        tableModel.addColumn("contato");
+        tableModel.addColumn("email");
+        tableModel.addColumn("data nascimento");
+        for(Paciente paciente : pacientes) {
+            tableModel.addRow(new Object[] {paciente.getId(),paciente.getNome(),paciente.getIdade(),paciente.getSexo(),paciente.getCpf(),paciente.getRua(),paciente.getNumero(),paciente.getComplemento(),paciente.getBairro(),paciente.getCidade(),paciente.getEstado(),paciente.getContato(),paciente.getEmail(),paciente.getDataNascimento()});
+        }
+    }
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         System.out.println("Origem ao clicar em voltar: " + origem);

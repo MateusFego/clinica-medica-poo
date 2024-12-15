@@ -14,9 +14,9 @@ public class GerenciamentoPaciente {
     }
 
     // Method to register a new pacient
-    public static void cadastrarPaciente( String nome, int idade, String sexo, String cpf, String rua, String numero, String complemento, String bairro, String cidade, String estado, String contato, String email) {
+    public static void cadastrarPaciente(String nome, int idade, String sexo, String cpf, String rua, String numero, String complemento, String bairro, String cidade, String estado, String contato, String email) {
         if (nome != null && cpf != null) {
-            pacienteDao.cadastrarPaciente( nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email);
+            pacienteDao.cadastrarPaciente(nome, idade, sexo, cpf, rua, numero, complemento, bairro, cidade, estado, contato, email);
             System.out.println("Paciente cadastrado com sucesso!");
         } else {
             System.out.println("Dados do paciente invalidos.");
@@ -57,16 +57,7 @@ public class GerenciamentoPaciente {
     }
 
     // Method to list all pacients
-    public List<Paciente> listarPaciente() {
-        List<Paciente> pacientes = pacienteDao.getAll();
-        if (!pacientes.isEmpty()) {
-            for (Paciente paciente : pacientes) {
-                System.out.println("Paciente ID: " + paciente.getId() + " - " + paciente.getNome());
-            }
-            return pacientes;
-        } else {
-            System.out.println("Nenhum paciente encontrado.");
-            return List.of();
-        }
+    public static List<Paciente> listarPaciente() {
+        return PacienteDao.getAll();
     }
 }
