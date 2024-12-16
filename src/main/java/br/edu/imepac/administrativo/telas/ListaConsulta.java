@@ -4,7 +4,13 @@
  */
 package br.edu.imepac.administrativo.telas;
 
-import javax.swing.JOptionPane;
+import br.edu.imepac.agendamento.servicos.GerenciamentoConsulta;
+import br.edu.imepac.agendamento.entidades.Consulta;
+import br.edu.imepac.agendamento.telas.CadastroConsulta;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
@@ -13,6 +19,7 @@ import javax.swing.JOptionPane;
 public class ListaConsulta extends javax.swing.JFrame {
 
     private String origem;
+    private DefaultTableModel tableModel;
     
     public ListaConsulta(String origem) {
         System.out.println("Origem recebida: " + origem);
@@ -30,7 +37,9 @@ public class ListaConsulta extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableModel = new DefaultTableModel();
+        jTable1 = new JTable(tableModel);
+        carregarTabela();
         btnVoltar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -41,22 +50,6 @@ public class ListaConsulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Lista de Consulta");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Data", "Horário", "Retorno", "Ativo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
         btnVoltar.setText("Voltar");
@@ -133,8 +126,22 @@ public class ListaConsulta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregarTabela() {
+        List<Consulta> consultas = GerenciamentoConsulta.listarConsulta();
+        tableModel.addColumn("id");
+        tableModel.addColumn("data e hora");
+        tableModel.addColumn("sintomas");
+        tableModel.addColumn("retorno");
+        tableModel.addColumn("ativa");
+        for(Consulta consulta : consultas) {
+            tableModel.addRow(new Object[] {consulta.getIdConsulta(),consulta.getDataHorario(),consulta.getSintomas(),consulta.getERetorno(),consulta.getEstaAtiva()});
+        }
+    }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        CadastroConsulta cadastroConsulta = new CadastroConsulta(this.origem);
+        cadastroConsulta.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

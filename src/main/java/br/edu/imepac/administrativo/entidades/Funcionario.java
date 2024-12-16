@@ -10,7 +10,7 @@ public class Funcionario {
     private String senha;
     private String nome;
     private int idade;
-    private char sexo;
+    private String sexo;
     private String cpf;
     private String rua;
     private String numero;
@@ -22,10 +22,9 @@ public class Funcionario {
     private String email;
     private LocalDate dataNascimento;
     EnumTipoFuncionario enumTipoFuncionario;
-    private List<Especialidade> especialidades;
-    public Funcionario(long id, String usuario, String senha, String nome, int idade, char sexo,
-                       String cpf, String rua, String numero, String complemento, String bairro,
-                       String cidade, String estado, String contato, String email, LocalDate dataNascimento,
+    public Funcionario(long id, String usuario, String senha, String nome, int idade, String sexo,
+                       String cpf, String rua, String numero, String bairro,
+                       String cidade, String estado, String contato, String email,
                        EnumTipoFuncionario enumTipoFuncionario) {
         this.id = id;
         this.usuario = usuario;
@@ -36,7 +35,6 @@ public class Funcionario {
         this.cpf = cpf;
         this.rua = rua;
         this.numero = numero;
-        this.complemento = complemento;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
@@ -44,7 +42,6 @@ public class Funcionario {
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.enumTipoFuncionario = enumTipoFuncionario;
-        this.especialidades = new ArrayList<>();
     }
     public Funcionario() {}
     public long getId() { return id; }
@@ -57,8 +54,8 @@ public class Funcionario {
     public void setNome( String nome ) { this.nome = nome; }
     public int getIdade() { return idade; }
     public void setIdade( int idade) { this.idade = idade; }
-    public char getSexo() { return sexo; }
-    public void setSexo( char sexo ) { this.sexo = sexo; }
+    public String getSexo() { return sexo; }
+    public void setSexo( String sexo ) { this.sexo = sexo; }
     public String getCpf() { return cpf; }
     public void setCpf( String cpf ) { this.cpf = cpf; }
     public String getRua() { return rua; }
@@ -81,32 +78,4 @@ public class Funcionario {
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
     public EnumTipoFuncionario getEnumTipoFuncionario() { return enumTipoFuncionario; }
     public void setEnumTipoFuncionario( EnumTipoFuncionario enumTipoFuncionario ) { this.enumTipoFuncionario = enumTipoFuncionario; }
-    public List<Especialidade> getEspecialidades() { return especialidades; }
-    public void setEspecialidades(List<Especialidade> especialidades) { this.especialidades = especialidades; }
-    public void addEspecialidade(Especialidade especialidade) { this.especialidades.add(especialidade); }
-    public void removeEspecialidade(Especialidade especialidade) { this.especialidades.remove(especialidade); }
-
-    @Override
-    public String toString() {
-        return "Funcionario{" +
-                "id=" + id +
-                ", usuario='" + usuario + '\'' +
-                ", senha='" + senha + '\'' +
-                ", nome='" + nome + '\'' +
-                ", idade=" + idade +
-                ", sexo=" + sexo +
-                ", cpf='" + cpf + '\'' +
-                ", rua='" + rua + '\'' +
-                ", numero='" + numero + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", contato='" + contato + '\'' +
-                ", email='" + email + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", enumTipoFuncionario=" + enumTipoFuncionario +
-                ", especialidades=" + especialidades +
-                '}';
-    }
 }

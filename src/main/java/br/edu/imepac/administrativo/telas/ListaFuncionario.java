@@ -4,6 +4,7 @@
  */
 package br.edu.imepac.administrativo.telas;
 
+import br.edu.imepac.administrativo.daos.FuncionarioDao;
 import br.edu.imepac.administrativo.servicos.GerenciamentoFuncionario;
 import br.edu.imepac.administrativo.entidades.Funcionario;
 
@@ -157,7 +158,9 @@ public class ListaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -167,7 +170,11 @@ public class ListaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
+        String busca = JOptionPane.showInputDialog("Digite o ID do funcionario a ser editado:");
+        Funcionario funcionario = GerenciamentoFuncionario.buscarFuncionario(Integer.parseInt(busca));
+        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario(funcionario);
+        this.dispose();
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
     /**

@@ -25,8 +25,28 @@ public class GerenciamentoFuncionario {
         }
     }
 
+    public static void editarFuncionario(Long idfuncionario, String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
+        if (idfuncionario!= null && usuario != null && senha != null && nome != null) {
+            Funcionario funcionario;
+            if(enumTipoFuncionario.equals("ATENDENTE")){
+            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.ATENDENTE);
+                FuncionarioDao.update(funcionario);
+            }else if(enumTipoFuncionario.equals("MEDICO")){
+            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.MEDICO);
+                FuncionarioDao.update(funcionario);
+            }else if(enumTipoFuncionario.equals("ADMINISTRADOR")){
+            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.ADMINISTRADOR);
+                FuncionarioDao.update(funcionario);
+            }
+            System.out.println("Funcionario cadastrado com sucesso!");
+        } else {
+            System.out.println("Dados do funcionario invalidos.");
+        }
+
+    }
+
     // Method to read employee information by ID
-    public Funcionario lerFuncionario(long idFuncionario) {
+    public static Funcionario buscarFuncionario(long idFuncionario) {
         Funcionario funcionario = funcionarioDao.getById(idFuncionario);
         if (funcionario != null) {
             System.out.println("Funcionario encontrado: " + funcionario.getNome());

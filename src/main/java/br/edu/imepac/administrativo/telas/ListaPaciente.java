@@ -82,6 +82,9 @@ public class ListaPaciente extends javax.swing.JFrame {
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Salvar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {btnSaveActionPerformed(evt);}
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,6 +158,12 @@ public class ListaPaciente extends javax.swing.JFrame {
         for(Paciente paciente : pacientes) {
             tableModel.addRow(new Object[] {paciente.getId(),paciente.getNome(),paciente.getIdade(),paciente.getSexo(),paciente.getCpf(),paciente.getRua(),paciente.getNumero(),paciente.getComplemento(),paciente.getBairro(),paciente.getCidade(),paciente.getEstado(),paciente.getContato(),paciente.getEmail(),paciente.getDataNascimento()});
         }
+    }
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {
+        this.dispose();
+        CadastroPaciente cadastroPaciente = new CadastroPaciente(origem);
+        cadastroPaciente.setVisible(true);
     }
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

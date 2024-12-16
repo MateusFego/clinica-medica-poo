@@ -57,16 +57,7 @@ public class GerenciamentoConsulta {
     }
 
     // Listar consultas
-    public List<Consulta> listarConsulta() {
-        List<Consulta> consultas = consultaDao.getAll();
-        if (!consultas.isEmpty()) {
-            for (Consulta consulta : consultas) {
-                System.out.println("Consulta ID: " + consulta.getIdConsulta() + " - Data: " + consulta.getDataHorario());  // Displaying DataHorario
-            }
-            return consultas;
-        } else {
-            System.out.println("Nenhuma consulta encontrada.");
-            return List.of();
-        }
+    public static List<Consulta> listarConsulta() {
+        return consultaDao.getAll();
     }
 }

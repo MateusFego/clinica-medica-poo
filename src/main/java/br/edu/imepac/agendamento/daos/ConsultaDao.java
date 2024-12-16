@@ -15,7 +15,7 @@ public class ConsultaDao {
     public static void save(String data, String horario, String sintomas, Boolean retorno, Boolean ativa) {
         String query = "INSERT INTO consulta (dataHorario, sintomas, eRetorno, estaAtiva) VALUES (?, ?, ?, ?)";
         DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -46,7 +46,7 @@ public class ConsultaDao {
     }
 
     public Consulta getById(long id) {
-        String query = "SELECT * FROM Consulta WHERE idConsulta = ?";
+        String query = "SELECT * FROM consulta WHERE idConsulta = ?";
         Consulta consulta = null;
 
         try (Connection conn = ConexaoDao.getConexao();
@@ -57,7 +57,7 @@ public class ConsultaDao {
                 if (rs.next()) {
                     consulta = new Consulta();
                     consulta.setIdConsulta(rs.getLong("idConsulta"));
-                    consulta.setDataHorario(rs.getDate("dataHorario").toLocalDate());
+                    consulta.setDataHorario(rs.getTimestamp("dataHorario").toLocalDateTime());
                     consulta.setSintomas(rs.getString("sintomas"));
                     consulta.setERetorno(rs.getBoolean("eRetorno"));
                     consulta.setEstaAtiva(rs.getBoolean("estaAtiva"));
@@ -69,9 +69,9 @@ public class ConsultaDao {
         return consulta;
     }
 
-    public List<Consulta> getAll() {
+    public static List<Consulta> getAll() {
         List<Consulta> consultas = new ArrayList<>();
-        String query = "SELECT * FROM Consulta";
+        String query = "SELECT * FROM consulta";
 
         try (Connection conn = ConexaoDao.getConexao();
              Statement stmt = conn.createStatement();
@@ -80,7 +80,7 @@ public class ConsultaDao {
             while (rs.next()) {
                 Consulta consulta = new Consulta();
                 consulta.setIdConsulta(rs.getLong("idConsulta"));
-                consulta.setDataHorario(rs.getDate("dataHorario").toLocalDate());
+                consulta.setDataHorario(rs.getTimestamp("dataHorario").toLocalDateTime());
                 consulta.setSintomas(rs.getString("sintomas"));
                 consulta.setERetorno(rs.getBoolean("eRetorno"));
                 consulta.setEstaAtiva(rs.getBoolean("estaAtiva"));
@@ -93,12 +93,12 @@ public class ConsultaDao {
     }
 
     public void update(Consulta consulta) {
-        String query = "UPDATE Consulta SET dataHorario = ?, sintomas = ?, eRetorno = ?, estaAtiva = ? WHERE idConsulta = ?";
+        String query = "UPDATE consulta SET dataHorario = ?, sintomas = ?, eRetorno = ?, estaAtiva = ? WHERE idConsulta = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setDate(1, Date.valueOf(consulta.getDataHorario()));
+            stmt.setTimestamp(1, Timestamp.valueOf(consulta.getDataHorario()));
             stmt.setString(2, consulta.getSintomas());
             stmt.setBoolean(3, consulta.getERetorno());
             stmt.setBoolean(4, consulta.getEstaAtiva());
@@ -111,7 +111,7 @@ public class ConsultaDao {
     }
 
     public void delete(long id) {
-        String query = "DELETE FROM Consulta WHERE idConsulta = ?";
+        String query = "DELETE FROM consulta WHERE idConsulta = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {

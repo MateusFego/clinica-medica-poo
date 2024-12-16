@@ -130,7 +130,9 @@ public class ListaConvenios extends javax.swing.JFrame {
     }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Convenio convenio = new Convenio(this.origem);
+        convenio.setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnVOltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVOltarActionPerformed

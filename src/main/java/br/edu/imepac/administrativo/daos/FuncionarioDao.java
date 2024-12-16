@@ -61,7 +61,7 @@ public class FuncionarioDao {
                     funcionario.setSenha(rs.getString("senha"));
                     funcionario.setNome(rs.getString("nome"));
                     funcionario.setIdade(rs.getInt("idade"));
-                    funcionario.setSexo(rs.getString("sexo").charAt(0));
+                    funcionario.setSexo(rs.getString("sexo"));
                     funcionario.setCpf(rs.getString("cpf"));
                     funcionario.setRua(rs.getString("rua"));
                     funcionario.setNumero(rs.getString("numero"));
@@ -96,7 +96,7 @@ public class FuncionarioDao {
                 funcionario.setSenha(rs.getString("senha"));
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setIdade(rs.getInt("idade"));
-                funcionario.setSexo(rs.getString("sexo").charAt(0));
+                funcionario.setSexo(rs.getString("sexo"));
                 funcionario.setCpf(rs.getString("cpf"));
                 funcionario.setRua(rs.getString("rua"));
                 funcionario.setNumero(rs.getString("numero"));
@@ -116,8 +116,8 @@ public class FuncionarioDao {
         return funcionarios;
     }
 
-    public void update(Funcionario funcionario) {
-        String query = "UPDATE funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
+    public static void update(Funcionario funcionario) {
+        String query = "UPDATE funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -130,13 +130,11 @@ public class FuncionarioDao {
             stmt.setString(6, funcionario.getCpf());
             stmt.setString(7, funcionario.getRua());
             stmt.setString(8, funcionario.getNumero());
-            stmt.setString(9, funcionario.getComplemento());
             stmt.setString(10, funcionario.getBairro());
             stmt.setString(11, funcionario.getCidade());
             stmt.setString(12, funcionario.getEstado());
             stmt.setString(13, funcionario.getContato());
             stmt.setString(14, funcionario.getEmail());
-            stmt.setDate(15, Date.valueOf(funcionario.getDataNascimento()));
             stmt.setString(16, funcionario.getEnumTipoFuncionario().toString());
             stmt.setLong(17, funcionario.getId());
 

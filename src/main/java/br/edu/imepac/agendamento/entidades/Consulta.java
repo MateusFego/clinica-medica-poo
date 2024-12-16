@@ -1,18 +1,19 @@
 package br.edu.imepac.agendamento.entidades;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Consulta {
     private long idConsulta;
-    private LocalDate dataHorario;
+    private LocalDateTime dataHorario;
     private String sintomas;
     private boolean eRetorno;
     private boolean estaAtiva;
     public Consulta () {}
     public long getIdConsulta() { return idConsulta; }
     public void setIdConsulta( long idConsulta ) { this.idConsulta = idConsulta; }
-    public LocalDate getDataHorario() { return dataHorario; }
-    public void setDataHorario( LocalDate dataHorario ) { this.dataHorario = dataHorario; }
+    public LocalDateTime getDataHorario() { return dataHorario; }
+    public void setDataHorario( LocalDateTime dataHorario ) { this.dataHorario = dataHorario; }
     public String getSintomas() { return sintomas; }
     public void setSintomas( String sintomas ) { this.sintomas = sintomas; }
     public boolean getERetorno() { return eRetorno; }
