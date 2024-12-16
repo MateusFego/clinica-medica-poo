@@ -11,6 +11,9 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
 import br.edu.imepac.administrativo.servicos.GerenciamentoFuncionario;
 
@@ -843,6 +846,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             String estado = campoEstado.getText();
             String contato = campoCOntato.getText();
             String email = campoEmail.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dataNascimento = LocalDate.parse(campoDateNascimento.getText(), formatter);
             String enumTipoFuncionario = "";
             if(atendenteRadioOption.isSelected()){
                 enumTipoFuncionario = ("ATENDENTE");
@@ -854,9 +859,11 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Selecione um tipo de funcionario");
             }
             if (idfuncionario == null) {
-                GerenciamentoFuncionario.cadastrarFuncionario(usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, enumTipoFuncionario);
+                GerenciamentoFuncionario.cadastrarFuncionario(
+                        usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, dataNascimento, enumTipoFuncionario);
             } else {
-                GerenciamentoFuncionario.editarFuncionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, enumTipoFuncionario);
+                GerenciamentoFuncionario.editarFuncionario(
+                        idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, dataNascimento, enumTipoFuncionario);
             }
             JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!");
         }else {

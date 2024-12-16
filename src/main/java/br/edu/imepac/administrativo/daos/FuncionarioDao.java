@@ -2,6 +2,8 @@ package br.edu.imepac.administrativo.daos;
 
 import br.edu.imepac.administrativo.entidades.Funcionario;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.imepac.administrativo.entidades.EnumTipoFuncionario;
@@ -9,9 +11,11 @@ import br.edu.imepac.administrativo.entidades.Paciente;
 
 public class FuncionarioDao {
 
-    public static void save(String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
-        String query = "INSERT INTO funcionario (usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, tipoFuncionario) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public static void save(
+            String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero,
+            String bairro, String cidade, String estado, String contato, String email, LocalDate dataNascimento, String enumTipoFuncionario) {
+        String query = "INSERT INTO funcionario (usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, datanascimento, tipoFuncionario) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -29,7 +33,9 @@ public class FuncionarioDao {
             stmt.setString(11, estado);
             stmt.setString(12, contato);
             stmt.setString(13, email);
-            stmt.setString(14, enumTipoFuncionario);
+//            stmt.setDate(14, new Date(dataNascimento.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()));
+            stmt.setDate(14, Date.valueOf(dataNascimento));
+            stmt.setString(15, enumTipoFuncionario);
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
@@ -117,7 +123,7 @@ public class FuncionarioDao {
     }
 
     public static void update(Funcionario funcionario) {
-        String query = "UPDATE funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
+        String query = "UPDATE funcionario SET usuario = ?, senha = ?, nome = ?, idade = ?, sexo = ?, cpf = ?, rua = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, contato = ?, email = ?, dataNascimento = ?, tipoFuncionario = ? WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -130,11 +136,13 @@ public class FuncionarioDao {
             stmt.setString(6, funcionario.getCpf());
             stmt.setString(7, funcionario.getRua());
             stmt.setString(8, funcionario.getNumero());
+            stmt.setString(9, funcionario.getComplemento());
             stmt.setString(10, funcionario.getBairro());
             stmt.setString(11, funcionario.getCidade());
             stmt.setString(12, funcionario.getEstado());
             stmt.setString(13, funcionario.getContato());
             stmt.setString(14, funcionario.getEmail());
+            stmt.setDate(15, Date.valueOf(funcionario.getDataNascimento()));
             stmt.setString(16, funcionario.getEnumTipoFuncionario().toString());
             stmt.setLong(17, funcionario.getId());
 
@@ -144,7 +152,7 @@ public class FuncionarioDao {
         }
     }
 
-    public void delete(long id) {
+    public static void delete(long id) {
         String query = "DELETE FROM funcionario WHERE id = ?";
 
         try (Connection conn = ConexaoDao.getConexao();
@@ -157,4 +165,3 @@ public class FuncionarioDao {
         }
     }
 }
-

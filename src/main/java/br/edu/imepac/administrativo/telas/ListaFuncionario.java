@@ -154,7 +154,15 @@ public class ListaFuncionario extends javax.swing.JFrame {
     }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        String busca = JOptionPane.showInputDialog("Digite o ID do funcionario a ser deletado:");
+        GerenciamentoFuncionario.deletarFuncionario(Integer.parseInt(busca));
+        List<Funcionario> funcionarios = GerenciamentoFuncionario.listarFuncionario();
+        while (tableModel.getRowCount() > 0) {
+            tableModel.removeRow(0);
+        }
+        for (Funcionario funcionario : funcionarios) {
+            tableModel.addRow(new Object[] {funcionario.getId(),funcionario.getUsuario(),funcionario.getSenha(),funcionario.getNome(),funcionario.getIdade(),funcionario.getSexo(),funcionario.getCpf(),funcionario.getRua(),funcionario.getNumero(),funcionario.getComplemento(),funcionario.getBairro(),funcionario.getCidade(),funcionario.getEstado(),funcionario.getContato(),funcionario.getEmail(),funcionario.getDataNascimento(),funcionario.getEnumTipoFuncionario().name()});
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

@@ -1,6 +1,7 @@
 package br.edu.imepac.administrativo.servicos;
 
 import br.edu.imepac.administrativo.daos.PacienteDao;
+import br.edu.imepac.administrativo.entidades.Funcionario;
 import br.edu.imepac.administrativo.entidades.Paciente;
 
 import java.util.List;
@@ -24,13 +25,13 @@ public class GerenciamentoPaciente {
     }
 
     // Method to read pacient information by ID
-    public Paciente lerPaciente(long idPaciente) {
-        Paciente paciente = pacienteDao.getById(idPaciente);
+    public static Paciente buscarPaciente(long idPaciente) {
+        Paciente paciente = PacienteDao.getById(idPaciente);
         if (paciente != null) {
-            System.out.println("Paciente encontrado: " + paciente.getNome());
+            System.out.println("Funcionario encontrado: " + paciente.getNome());
             return paciente;
         } else {
-            System.out.println("Paciente nao encontrado.");
+            System.out.println("Funcionario nao encontrado.");
             return null;
         }
     }

@@ -24,7 +24,7 @@ public class Funcionario {
     EnumTipoFuncionario enumTipoFuncionario;
     public Funcionario(long id, String usuario, String senha, String nome, int idade, String sexo,
                        String cpf, String rua, String numero, String bairro,
-                       String cidade, String estado, String contato, String email,
+                       String cidade, String estado, String contato, String email,LocalDate dataNascimento,
                        EnumTipoFuncionario enumTipoFuncionario) {
         this.id = id;
         this.usuario = usuario;

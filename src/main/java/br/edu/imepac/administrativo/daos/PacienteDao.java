@@ -43,7 +43,7 @@ public class PacienteDao {
         }
     }
 
-    public Paciente getById(long id) {
+    public static Paciente getById(long id) {
         String query = "SELECT * FROM paciente WHERE id = ?";
         Paciente paciente = null;
 

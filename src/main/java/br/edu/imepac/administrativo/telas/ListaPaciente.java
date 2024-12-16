@@ -189,7 +189,11 @@ public class ListaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
     }
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
+        String busca = JOptionPane.showInputDialog("Digite o ID do paciente a ser editado:");
+        Paciente paciente = GerenciamentoPaciente.buscarPaciente(Integer.parseInt(busca));
+        CadastroPaciente cadastroPaciente = new CadastroPaciente(origem, paciente);
+        this.dispose();
+        cadastroPaciente.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
     /**

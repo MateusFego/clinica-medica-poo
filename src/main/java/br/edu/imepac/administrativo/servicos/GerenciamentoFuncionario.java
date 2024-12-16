@@ -4,6 +4,7 @@ import br.edu.imepac.administrativo.daos.FuncionarioDao;
 import br.edu.imepac.administrativo.entidades.Funcionario;
 import br.edu.imepac.administrativo.entidades.EnumTipoFuncionario;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -16,26 +17,33 @@ public class GerenciamentoFuncionario {
     }
 
     // Method to register a new employee
-    public static void cadastrarFuncionario(String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
+    public static void cadastrarFuncionario(
+            String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero,
+            String bairro, String cidade, String estado, String contato, String email, LocalDate dataNascimento,
+            String enumTipoFuncionario) {
         if (usuario != null && senha != null && nome != null) {
-            FuncionarioDao.save(usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, enumTipoFuncionario);
+            FuncionarioDao.save(usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato,
+                    email, dataNascimento, enumTipoFuncionario);
             System.out.println("Funcionario cadastrado com sucesso!");
         } else {
             System.out.println("Dados do funcionario invalidos.");
         }
     }
 
-    public static void editarFuncionario(Long idfuncionario, String usuario, String senha, String nome, int idade, String sexo, String cpf, String rua, String numero, String bairro, String cidade, String estado, String contato, String email, String enumTipoFuncionario) {
+    public static void editarFuncionario(
+            Long idfuncionario, String usuario, String senha, String nome, int idade, String sexo, String cpf,
+            String rua, String numero, String bairro, String cidade, String estado, String contato, String email,
+            LocalDate dataNascimento, String enumTipoFuncionario) {
         if (idfuncionario!= null && usuario != null && senha != null && nome != null) {
             Funcionario funcionario;
             if(enumTipoFuncionario.equals("ATENDENTE")){
-            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.ATENDENTE);
+                funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, dataNascimento, EnumTipoFuncionario.ATENDENTE);
                 FuncionarioDao.update(funcionario);
             }else if(enumTipoFuncionario.equals("MEDICO")){
-            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.MEDICO);
+                funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, dataNascimento, EnumTipoFuncionario.MEDICO);
                 FuncionarioDao.update(funcionario);
             }else if(enumTipoFuncionario.equals("ADMINISTRADOR")){
-            funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, EnumTipoFuncionario.ADMINISTRADOR);
+                funcionario = new Funcionario(idfuncionario, usuario, senha, nome, idade, sexo, cpf, rua, numero, bairro, cidade, estado, contato, email, dataNascimento, EnumTipoFuncionario.ADMINISTRADOR);
                 FuncionarioDao.update(funcionario);
             }
             System.out.println("Funcionario cadastrado com sucesso!");
@@ -68,14 +76,9 @@ public class GerenciamentoFuncionario {
     }
 
     // Method to delete an employee
-    public void deletarFuncionario(long idFuncionario) {
-        Funcionario funcionario = funcionarioDao.getById(idFuncionario);
-        if (funcionario != null) {
-            funcionarioDao.delete(idFuncionario);
-            System.out.println("Funcionario deletado com sucesso!");
-        } else {
-            System.out.println("Funcionario nao encontrado.");
-        }
+    public static void deletarFuncionario(long idFuncionario) {
+        FuncionarioDao.delete(idFuncionario);
+        System.out.println("Funcionario deletado com sucesso!");
     }
 
     // Method to list all employees
@@ -85,7 +88,7 @@ public class GerenciamentoFuncionario {
 
     // Helper method to list employees by type (ADMINISTRADOR, ATENDENTE, MEDICO)
     public List<Funcionario> listarFuncionarioPorTipo(EnumTipoFuncionario tipoFuncionario) {
-        List<Funcionario> funcionarios = funcionarioDao.getAll();
+        List<Funcionario> funcionarios = FuncionarioDao.getAll();
         List<Funcionario> filteredFuncionarios = new ArrayList<>();
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getEnumTipoFuncionario() == tipoFuncionario) {
